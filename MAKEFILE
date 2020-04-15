@@ -1,0 +1,211 @@
+###############################################################################
+#
+#  GnuMakeFile for building the  (rudimentary ) ProtoType  Java3D API
+#  based application. 
+#
+#  Usage: 
+#      make all
+#          makes all the target
+#
+#      make clean
+#          deletes all class file under this sub-directory (use with caution ) 
+#
+#################################################################################
+
+CC=javac
+
+CC_OPTIONS=  #-verbose
+
+JAR_UTIL=jar
+
+JAR_OPTIONS=cfm
+
+COMMON_PATH=\
+           hsdc/common
+
+PANEL_PATH=\
+           hsdc/controlpanel
+
+THREED_PATH=\
+           hsdc/threedpack
+
+MAIN_PATH=.
+
+NURBS_PATH=\
+         hsdc/nurbs
+
+
+COMMON_FILES= \
+           $(COMMON_PATH)/manifest.mf  \
+           $(COMMON_PATH)/BranchGroupEx.class \
+           $(COMMON_PATH)/MouseRotateCallback.class \
+           $(COMMON_PATH)/MouseRotateEcho.class  \
+	     $(COMMON_PATH)/ObjFileDataItem.class  \
+	     $(COMMON_PATH)/AxesXYZ.class \
+	     $(COMMON_PATH)/Torus.class \
+	     $(COMMON_PATH)/Cone.class \
+	     $(COMMON_PATH)/GIODCylinder.class \
+	     $(COMMON_PATH)/GIODThickCylinder.class \
+	     $(COMMON_PATH)/Knot.class \
+	     $(COMMON_PATH)/Mobius.class \
+           $(COMMON_PATH)/SpiralTorus.class \
+	     $(COMMON_PATH)/Spring.class \
+	     $(COMMON_PATH)/Tetrahedron.class \
+	     $(COMMON_PATH)/Triangle3D.class \
+           $(COMMON_PATH)/BezierSurface.class \
+           $(COMMON_PATH)/BSpline.class \
+           $(COMMON_PATH)/EulerUtils.class \
+           $(COMMON_PATH)/PolygonArray.class
+  
+
+PANEL_FILES= \
+           $(PANEL_PATH)/manifest.mf  \
+           $(PANEL_PATH)/ControlPanel.class 
+
+THREED_FILES= \
+           $(THREED_PATH)/manifest.mf  \
+           $(THREED_PATH)/ThreeDDisplayBean.class
+
+NURBS_FILES= \
+           $(NURBS_PATH)/manifest.mf \
+           $(NURBS_PATH)/NurbSurface.class \
+           $(NURBS_PATH)/Nurbs.class \
+           $(NURBS_PATH)/Knot.class \
+           $(NURBS_PATH)/ControlNet.class \
+  	     $(NURBS_PATH)/Point4.class \
+           $(NURBS_PATH)/NurbsCurve.class \
+           $(NURBS_PATH)/NurbsRevolve.class 
+   
+
+MAIN_FILES=   \
+	   ProtoUniverse.java
+           
+COMMONJARFILE=Common.jar 
+
+PANELJARFILE=CPanel.jar  
+
+DISPLAYJARFILE=3DDisplay.jar
+
+NURBSJARFILE=Nurbs.jar
+
+MAIN_APP=ProtoUniverse.class
+
+all: 	$(COMMONJARFILE)  \
+	$(PANELJARFILE)   \
+     	$(DISPLAYJARFILE) \
+     	$(NURBSJARFILE) $(MAIN_APP)
+
+
+# Create a JAR file with a suitable manifest.
+
+$(COMMONJARFILE): $(COMMON_FILES) 
+	$(JAR_UTIL) $(JAR_OPTIONS) $(COMMONJARFILE) $(COMMON_FILES)
+
+$(PANELJARFILE): $(PANEL_FILES) 
+	$(JAR_UTIL) $(JAR_OPTIONS) $(PANELJARFILE) $(PANEL_FILES)
+
+$(DISPLAYJARFILE): $(THREED_FILES) 
+	$(JAR_UTIL) $(JAR_OPTIONS) $(DISPLAYJARFILE) $(THREED_FILES) 
+
+$(NURBSJARFILE): $(NURBS_FILES)
+	$(JAR_UTIL) $(JAR_OPTIONS) $(NURBSJARFILE) $(NURBS_FILES) 
+
+
+$(MAIN_APP): $(MAIN_FILES)
+    
+%.class: %.java
+	export CLASSPATH; CLASSPATH=. ; \
+	javac $<
+
+$(COMMON_PATH)/BranchGroupEx.class: $(COMMON_PATH)/BranchGroupEx.java 
+	$(CC)   $(CC_OPTIONS)  $(COMMON_PATH)/BranchGroupEx.java 
+
+$(COMMON_PATH)/MouseRotateCallback.class: $(COMMON_PATH)/MouseRotateCallback.java 
+	$(CC)   $(CC_OPTIONS)  $(COMMON_PATH)/MouseRotateCallback.java 
+        
+$(COMMON_PATH)/MouseRotateEcho.class: $(COMMON_PATH)/MouseRotateEcho.java 
+	$(CC)   $(CC_OPTIONS)  $(COMMON_PATH)/MouseRotateEcho.java  
+
+$(COMMON_PATH)/ObjFileDataItem.class: $(COMMON_PATH)/ObjFileDataItem.java 
+	$(CC)   $(CC_OPTIONS)  $(COMMON_PATH)/ObjFileDataItem.java
+
+$(COMMON_PATH)/AxesXYZ.class: $(COMMON_PATH)/AxesXYZ.java
+	$(CC)   $(CC_OPTIONS)  $(COMMON_PATH)/AxesXYZ.java
+
+$(COMMON_PATH)/Torus.class: $(COMMON_PATH)/Torus.java 
+	$(CC)   $(CC_OPTIONS)  $(COMMON_PATH)/Torus.java
+
+$(COMMON_PATH)/Cone.class:  $(COMMON_PATH)/Cone.java 
+	$(CC)   $(CC_OPTIONS)  $(COMMON_PATH)/Cone.java
+
+$(COMMON_PATH)/GIODCylinder.class: $(COMMON_PATH)/GIODCylinder.java
+	$(CC)   $(CC_OPTIONS)  $(COMMON_PATH)/GIODCylinder.java
+		
+$(COMMON_PATH)/GIODThickCylinder.class: $(COMMON_PATH)/GIODThickCylinder.java
+	$(CC)   $(CC_OPTIONS)  $(COMMON_PATH)/GIODThickCylinder.java
+
+$(COMMON_PATH)/Knot.class: $(COMMON_PATH)/Knot.java
+	$(CC)  	$(CC_OPTIONS)  $(COMMON_PATH)/Knot.java
+
+$(COMMON_PATH)/Mobius.class: $(COMMON_PATH)/Mobius.java
+	$(CC)  	$(CC_OPTIONS)  $(COMMON_PATH)/Mobius.java
+
+$(COMMON_PATH)/SpiralTorus.class: $(COMMON_PATH)/SpiralTorus.java 
+	$(CC)  	$(CC_OPTIONS)  $(COMMON_PATH)/SpiralTorus.java
+
+$(COMMON_PATH)/Spring.class:  $(COMMON_PATH)/Spring.java
+	$(CC)  	$(CC_OPTIONS)  $(COMMON_PATH)/Spring.java
+
+$(COMMON_PATH)/Tetrahedron.class: $(COMMON_PATH)/Tetrahedron.java
+	$(CC)  	$(CC_OPTIONS)  $(COMMON_PATH)/Tetrahedron.java
+
+$(COMMON_PATH)/Triangle3D.class: $(COMMON_PATH)/Triangle3D.java
+	$(CC)  	$(CC_OPTIONS)  $(COMMON_PATH)/Triangle3D.java
+
+$(COMMON_PATH)/BezierSurface.class: $(COMMON_PATH)/BezierSurface.java
+	$(CC)  	$(CC_OPTIONS)  $(COMMON_PATH)/BezierSurface.java
+
+$(COMMON_PATH)/BSpline.class: $(COMMON_PATH)/BSpline.java
+	$(CC)  	$(CC_OPTIONS)  $(COMMON_PATH)/BSpline.java
+
+$(PANEL_PATH)/ControlPanel.class: $(PANEL_PATH)/ControlPanel.java
+	$(CC)   $(CC_OPTIONS)  $(PANEL_PATH)/ControlPanel.java
+
+$(THREED_PATH)/ThreeDDisplayBean.class: $(THREED_PATH)/ThreeDDisplayBean.java
+	$(CC)   $(CC_OPTIONS)  $(THREED_PATH)/ThreeDDisplayBean.java
+
+$(MAIN_PATH)/ProtoUniverse.class: $(MAIN_PATH)/ProtoUniverse.java
+	$(CC)  	$(CC_OPTIONS)  $(MAIN_PATH)/ProtoUniverse.java
+
+$(NURBS_PATH)/Point4.class: $(NURBS_PATH)/Point4.java
+	$(CC) 	$(CC_OPTIONS)  $(NURBS_PATH)/Point4.java
+      
+$(NURBS_PATH)/ControlNet.class: $(NURBS_PATH)/ControlNet.java
+	$(CC) 	$(CC_OPTIONS)  $(NURBS_PATH)/ControlNet.java
+
+$(NURBS_PATH)/Knot.class: $(NURBS_PATH)/Knot.java
+	$(CC) 	$(CC_OPTIONS)  $(NURBS_PATH)/Knot.java
+
+$(NURBS_PATH)/Nurbs.class: $(NURBS_PATH)/Nurbs.java
+	$(CC) 	$(CC_OPTIONS)  $(NURBS_PATH)/Nurbs.java
+
+$(NURBS_PATH)/NurbSurface.class: $(NURBS_PATH)/NurbSurface.java
+	$(CC) 	$(CC_OPTIONS)  $(NURBS_PATH)/NurbSurface.java
+
+$(NURBS_PATH)/NurbsCurve.class: $(NURBS_PATH)/NurbsCurve.java
+	$(CC) 	$(CC_OPTIONS)  $(NURBS_PATH)/NurbsCurve.java
+
+$(NURBS_PATH)/NurbsRevolve.class: $(NURBS_PATH)/NurbsRevolve.java
+	$(CC) 	$(CC_OPTIONS)  $(NURBS_PATH)/NurbsRevolve.java
+
+$(COMMON_PATH)/EulerUtils.class: $(COMMON_PATH)/EulerUtils.java
+	$(CC)		$(CC_OPTIONS) $(COMMON_PATH)/EulerUtils.java
+
+$(COMMON_PATH)/PolygonArray.class: $(COMMON_PATH)/PolygonArray.java
+	$(CC)       $(CC_OPTIONS) $(COMMON_PATH)/PolygonArray.java
+
+
+clean:
+	del *.class /s
+
+      

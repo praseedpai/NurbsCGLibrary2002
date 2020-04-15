@@ -1,0 +1,18 @@
+Aim
+========================
+
+Java3D primitive array and its subclasses are static in nature. While doing interactive editing
+of primitives in a CAD system , This creates more problems. 
+
+classes 
+            DynamicGeometryArray 
+            DynamicTriangleArray
+            DynamicQuadArray
+            DynamicPolygonArray
+
+
+Since the Shape3D node expects a GeometryArray ( or its subclass ) ,These classes needs
+to extend GeometryArray. At the same time the sub-class has to act as a container to 
+GoemtryArray. 
+
+  
