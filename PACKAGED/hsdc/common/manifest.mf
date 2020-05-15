@@ -1,0 +1,12 @@
+Name: BranchGroupEx.class
+Java-Bean: False
+
+Name: MouseRotateCallback.class
+Java-Bean: False
+
+Name: MouseRotateEcho.class
+Java-Bean: False
+
+Name: ObjFileDataItem.class
+Java-Bean: False
+

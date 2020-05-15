@@ -1,0 +1,23 @@
+Name: Point4.class
+Java-Bean: False
+
+Name: ControlNet.class
+Java-Bean: False
+
+Name: Knot.class
+Java-Bean: False
+
+Name: Nurbs.class
+Java-Bean: False
+
+Name: NurbSurface.class
+Java-Bean: False
+
+Name: NurbsCurve.class
+Java-Bean: False
+
+Name: NurbsRevolve.class
+Java-Bean: False
+
+
+
